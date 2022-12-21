@@ -13,9 +13,11 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+
 function generatePassword() {
+  //asks user how long they want their pw to be
   var passwordLength = prompt("Please enter a value for your password length. The value must be between 8 and 128.");
-  while (passwordLength < 8 || passwordLength > 128) {
+  while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
     passwordLength = prompt("Please enter a value for your password length. The value must be between 8 and 128.");
   } 
   var lowerCase = confirm("Would you like to use lowercase letters?");
@@ -33,10 +35,13 @@ function generatePassword() {
     questions = [lowerCase, upperCase, useNumbers, useSymbols];
   }
   var arrNames = ["lowerArr", "upperArr", "numArr", "symbolArr"];
+  var passwordArr = [];
+
   for (let j = 0 ; j < 4; j++) {
     if(questions[j]) {
       passwordArr = passwordArr.concat(characters[arrNames[j]]);
       console.log(arrNames[j]);
+      console.log(passwordArr.length)
     }
   }
   console.log(passwordArr); 
@@ -46,7 +51,7 @@ function generatePassword() {
     console.log(passwordArr[x]);
     newPassword += passwordArr[x];
   }
-  alert(newPassword);
+  return newPassword + ' 👀';
 }
 
 function getRandomInt(min, max) {
@@ -59,5 +64,4 @@ const characters = {
  numArr:  ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
  symbolArr: [" ", "!", "\"", "#", "$", "%", "&", "\'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "\[", "\\", "\]", "^", "_", "`", "{", "|", "}", "~"]
 };
-var passwordArr = [];
-console.log(characters.lowerArr);
+
